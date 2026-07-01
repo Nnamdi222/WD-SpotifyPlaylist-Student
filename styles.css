@@ -6,8 +6,8 @@
    they can't license the exact charity: water typeface.
    ===================================================== */
 :root {
-  --spotify-green: #1ED760;
-  --spotify-green-dark: #1DB954;
+  --spotify-green: #1ed760;
+  --spotify-green-dark: #1db954;
   --spotify-black: #121212;
   --spotify-black-pure: #000000;
   --spotify-elevated: #181818;
@@ -23,7 +23,11 @@
 body {
   background-color: var(--spotify-black);
   color: var(--spotify-text-bright);
-  font-family: 'Montserrat', 'Inter', -apple-system, sans-serif;
+  font-family:
+    "Montserrat",
+    "Inter",
+    -apple-system,
+    sans-serif;
   letter-spacing: 0.01em;
 }
 
@@ -32,8 +36,7 @@ body {
 /* ===================================================== */
 .hero {
   height: 100vh;
-  background-image:
-    url("https://images.unsplash.com/photo-1506157786151-b8491531f063?w=1920&q=80");
+  background-image: url("https://images.unsplash.com/photo-1506157786151-b8491531f063?w=1920&q=80");
   background-size: cover;
   background-position: center;
   position: relative;
@@ -42,7 +45,7 @@ body {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0, 0, 0, 0.6);
 }
 
 .hero-content {
@@ -75,7 +78,9 @@ body {
   text-transform: uppercase;
   padding: 14px 36px;
   border-radius: 500px;
-  transition: transform 0.15s ease, background-color 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    background-color 0.15s ease;
 }
 
 .spotify-btn:hover {
@@ -106,6 +111,14 @@ body {
   content: "●";
   color: var(--spotify-green);
   font-size: 0.8rem;
+  transition:
+    color 0.15s ease,
+    filter 0.15s ease;
+}
+
+.logo:hover::before {
+  color: var(--spotify-green-dark);
+  filter: brightness(0.8);
 }
 
 .sidebar p {
@@ -228,7 +241,10 @@ body {
   padding: 10px 12px;
   cursor: pointer;
   border-radius: 4px;
-  transition: background 0.15s ease, opacity 0.2s ease, transform 0.2s ease;
+  transition:
+    background 0.15s ease,
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 
 .song-row img {
@@ -236,7 +252,7 @@ body {
   height: 56px;
   object-fit: cover;
   border-radius: 4px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 .song-row span:not(.remove-hint) {
@@ -263,7 +279,9 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.04em;
   opacity: 0;
-  transition: opacity 0.15s ease, color 0.15s ease;
+  transition:
+    opacity 0.15s ease,
+    color 0.15s ease;
 }
 
 .song-row:hover .remove-hint {

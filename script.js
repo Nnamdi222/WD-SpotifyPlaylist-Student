@@ -266,5 +266,88 @@ function buildPlaylist() {
      YOUR CODE GOES HERE:
      ===================================================== */
 
+function buildPlaylist() {
+  const mood = selector.value;
+  console.log("Selected mood:", mood);
+
+  if (!mood) {
+    feedback.textContent = "Your personalized playlist will appear here.";
+    feedback.className = "feedback-box";
+    container.innerHTML = "";
+    milestone.textContent = "";
+    return;
+  }
+
+  const allSongs = playlistData[mood];
+  console.log("Songs for this mood:", allSongs);
+
+  // STEP 5: Listening Mode Logic
+  const mode = modeSelector.value;
+  let songs;
+  if (mode === "quickPlay") {
+    songs = allSongs.slice(0, 3);
+  } else if (mode === "fullSession") {
+    songs = allSongs;
+  } else {
+    songs = []; // fallback if unexpected mode
+  }
+
+  // STEP 6: Conditional Feedback
+  container.innerHTML = "";
+  songsRemovedCount = 0;
+  milestone.textContent = "";
+
+  if (songs.length === 0) {
+    feedback.textContent = "No songs found for this mood and mode.";
+    feedback.className = "feedback-box error";
+  } else {
+    feedback.textContent = `Loaded ${songs.length} songs for ${mood} (${mode === "quickPlay" ? "Quick Play" : "Full Session"})`;
+    feedback.className = "feedback-box success";
+  }
+
+  // STEP 7, 8, 9: Loop through songs, create DOM elements, and add click removal
+  songs.forEach((song) => {
+    // Create song row container
+    const row = document.createElement("div");
+    row.className = "song-row";
+
+    // Create image element with fallback
+    const img = document.createElement("img");
+    img.src = song.cover;
+    img.alt = song.title;
+    img.onerror = function() {
+      this.src = "https://placehold.co/60x60?text=Music";
+    };
+
+    // Create title span
+    const titleSpan = document.createElement("span");
+    titleSpan.textContent = song.title;
+
+    // Create remove hint span
+    const removeHint = document.createElement("span");
+    removeHint.className = "remove-hint";
+    removeHint.textContent = "click to remove";
+
+    // Append elements to row
+    row.appendChild(img);
+    row.appendChild(titleSpan);
+    row.appendChild(removeHint);
+
+    // Append row to container
+    container.appendChild(row);
+
+    // STEP 9: Add click listener for removal animation and removal
+    row.addEventListener("click", () => {
+      row.classList.add("removing");
+
+      // Wait for CSS transition (~200ms), then remove element
+      setTimeout(() => {
+        row.remove();
+        songsRemovedCount++;
+        updateMilestone();
+      }, 200);
+    });
+  });
+}
 
 }
